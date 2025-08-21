@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 기본(라이트) */
+:root{
+  --bg:linear-gradient(135deg,#f8fafc 0%,#e0e7ff 100%);
+  --card:rgba(255,255,255,0.7);
+  --text:#22223b;
+  --muted:#7c7c9a;
+  --border:#e0e7ff;
+  --accent:#6ee7b7; /* 기본 민트 */
+  --accent-weak:rgba(110,231,183,.18);
+  --danger:#f87171;
+  --danger-bg:#fef2f2;
+  --glass-blur:blur(8px);
+}
+
+/* 다크 모드 */
+html[data-mode="dark"]{
+  --bg:linear-gradient(135deg,#232946 0%,#3a3a5d 100%);
+  --card:rgba(34,34,54,0.7);
+  --text:#e0e7ff;
+  --muted:#bfc6e0;
+  --border:#232946;
+  --danger:#fca5a5;
+  --danger-bg:#3f1d1d;
+  --glass-blur:blur(8px);
+}
+
+/* 팔레트 */
+html[data-palette="blue"]   { --accent:#60a5fa; --accent-weak:rgba(96,165,250,.18); }
+html[data-palette="green"]  { --accent:#6ee7b7; --accent-weak:rgba(110,231,183,.18); }
+html[data-palette="purple"] { --accent:#a5b4fc; --accent-weak:rgba(165,180,252,.18); }
+html[data-palette="pink"]   { --accent:#f9a8d4; --accent-weak:rgba(249,168,212,.18); }
+html[data-palette="orange"] { --accent:#fdba74; --accent-weak:rgba(253,186,116,.20); }
+html[data-palette="mint"]   { --accent:#5eead4; --accent-weak:rgba(94,234,212,.18); }
+html[data-palette="lavender"]{ --accent:#c4b5fd; --accent-weak:rgba(196,181,253,.18); }
+html[data-palette="apricot"]{ --accent:#fcd34d; --accent-weak:rgba(252,211,77,.18); }
+
+/* 커스텀 유틸리티: 색상은 CSS 변수에 매핑 */
+@layer utilities{
+  .bg-app{background:var(--bg)!important}
+  .bg-card{
+    background:var(--card);
+    backdrop-filter:var(--glass-blur);
+    -webkit-backdrop-filter:var(--glass-blur);
+    box-shadow:0 4px 32px 0 rgba(80,80,120,0.08),0 1.5px 8px 0 rgba(80,80,120,0.06);
+  }
+  .text-app{color:var(--text)}
+  .text-muted{color:var(--muted)}
+  .border-app{border-color:var(--border)}
+  .bg-accent{background-color:var(--accent)}
+  .hover\:bg-accent-weak:hover{background-color:var(--accent-weak)}
+  .ring-accent{box-shadow:0 0 0 4px var(--accent-weak)}
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Pretendard',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:background 0.5s;
+}
